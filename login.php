@@ -19,30 +19,35 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 
             $_SESSION['user'] = $user;
 
-            $stmt = $conn->prepare("SELECT ID, FirstName, LastName, password, type FROM users WHERE username = ?");
+            $stmt = $conn->prepare("SELECT ID, email, FirstName, LastName, password, userType FROM users WHERE username = ?");
             $stmt->bind_param("s", $user);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-
-                // Set the $_SESSION['user_data'] array
+                
                 $_SESSION['user_data'] = array(
                     'ID' => $row['ID'],
+                    'email' => $row['email'],
                     'FirstName' => $row['FirstName'],
                     'LastName' => $row['LastName'],
                     'username' => $user,
                     'password' => $row['password'],
-                    'type' => $row['type']
+                    'userType' => $row['userType']
                 );
+
+                $userType = $row['userType'];
+                
+                if($userType == 'admin'){
+                    header("Location: admin/index.php"); // This line triggers a redirect if the user_type is admin
+                } else {
+                    header("Location: HRInterface.php"); // This line triggers for other user_types
+                }
+                
             } else {
                 echo "User data not found";
             }
-
-            $stmt->close();
-            header("Location: HRInterface.php");
-            exit();
         } else {
             echo "<script>alert(\"Login Failed\");</script>";
             header("Location: ./"); 

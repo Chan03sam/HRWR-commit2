@@ -86,25 +86,28 @@
             <div class="form-group">
                 <button class="form-control btn btn-success" style="border: none;">Download</button>
             </div>
+
+            <form action="./mailSender/sending_mail.php" class="form-group" method="get">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control">
+                <input type="text" name="email" id="email" class="form-control" autocomplete="off">
             </div>
-            <div class="form-group">
-                <label for="alertLevel">Alert Level:</label>
-                <select name="alertLevel" id="alertLevel" class="form-control">
-                <option value="" disabled selected>Please Select...</option>
-                    <option value="1">1st</option>
-                    <option value="2">2nd</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="alertLevel">Attach File:</label>
-                <input type="file" required value="">
-            </div>
-            <div class="form-group">
-                <button class="form-control btn btn-success" style="border: none;">Send File</button>
-            </div>
+                <div class="form-group">
+                    <label for="alertLevel">Alert Level:</label>
+                    <select name="alertLevel" id="alertLevel" class="form-control">
+                    <option value="" disabled selected>Please Select...</option>
+                        <option value="1">1st</option>
+                        <option value="2">2nd</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="alertLevel">Attach File:</label>
+                    <input type="file" required value="">
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-success" style="border: none;" type=submit >Send File</button>
+                </div>
+            </form>
         </div>
         <div class="col-md-9 col-sm-9 col-lg-9">
             <?php require_once('details.php') ?>

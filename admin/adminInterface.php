@@ -1,4 +1,5 @@
 <?php
+require_once('../classes/config.php');
 if(isset($_SESSION['user_data'])) {
     $user_data = $_SESSION['user_data'];
     $user_id = $user_data['ID'];
@@ -30,6 +31,10 @@ if(isset($_SESSION['user_data'])) {
 
     h2 {
       color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     @media (max-width: 768px) {
@@ -53,23 +58,23 @@ if(isset($_SESSION['user_data'])) {
 
   <nav class="sticky navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-      <img src="assets/ncfl_logo2.png" alt="Company Logo" style="width: 120px; height: 50px" class="logo">
+      <img src="../assets/ncfl_logo2.png" alt="Company Logo" style="width: 120px; height: 50px" class="logo">
       <div class="d-flex">
-        <h2 class="fs-5">HR Workhours Report</h2>
+        <h2 class="fs-5" style="color: white;">HRWR - Administrator</h2>
       </div>
       <div class="d-flex ms-auto right">
-        <span style="margin-right: 15px; color: white;">Hello, <?php echo $user_data['FirstName']; ?> <?php echo $user_data['LastName']; ?></span>
-        <a href="#" class="me-3 text-white text-decoration-none" onclick="logout()">
-          <i class="fa-solid fa-right-from-bracket logout me-1" ></i>
-          <span>Logout</span>
-        </a>
+        <span style="margin-right: 15px; color: #fff;">Hello, <?php echo $user_data['FirstName']; ?> <?php echo $user_data['LastName']; ?></span>
+          <a href="#" class="me-3 text-white text-decoration-none" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket logout me-1" ></i>
+              <span>Logout</span>
+          </a>
       </div>
     </div>
   </nav>
 </body>
   <script>
     function logout() {
-      window.location.href = "logout.php";
+      window.location.href = "../logout.php";
     }
   </script>
 </html>
